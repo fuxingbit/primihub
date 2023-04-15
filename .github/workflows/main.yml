@@ -22,6 +22,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
+    - name: Install gettext
+      run: brew install gettext
+    - name: Add libintl to DYLD_FALLBACK_LIBRARY_PATH
+      run: echo '/usr/local/opt/gettext/lib' | sudo tee -a /etc/paths.d/libintl.dylib
     - name: set PYTHON LINK_OPTS
       run: ./pre_build.sh
       shell: bash
